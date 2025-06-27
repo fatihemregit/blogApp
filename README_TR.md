@@ -3,9 +3,7 @@ Kendi Blog Yazýlarýmý kendi websitemde(fatihemrekilinc.xyz) yayýnlamak için geli
 ## Projenin Amacý
 Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþmak hem de web geliþtirme becerilerimi geliþtirmek.
 ## Bu Committe Yapýlan iþlemler
-- Layout Dosyasýnýn oluþturulmasý ve içeriðinin kodlanmasý.
-- Türkçe Readme dosyasýnýn düzenlenmesi.
-- Yüklü olan Boostrap kütüphanesinin kaldýrýlmasý ve yeni bir versiyonunun eklenmesi.
+- Proje için gerekli olabilecek kütüphanelerin yüklenmesi.
 ## Proje Günlüðü
 ### Gün 1 (26.06.2025)
 - Proje oluþturuldu.
@@ -16,3 +14,4 @@ Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþma
 - Layout dosyasý oluþturuldu (Views/Shared/_Layout.cshtml) ve içeriði kodlandý.
 - Türkçe Readme dosyasý düzenlendi (README_TR.md)
 - Yüklü olan Boostrap kütüphanesi kaldýrýldý ve yeni bir versiyonu eklendi.
+- Proje için gerekli olabilecek kütüphaneler yüklendi(Microsoft.AspNetCore.Identity,Microsoft.AspNetCore.Identity.EntityFrameworkCore,Microsoft.EntityFrameworkCore,Microsoft.EntityFrameworkCore.Design,Microsoft.EntityFrameworkCore.SqlServer,icrosoft.EntityFrameworkCore.Tools).
