@@ -1,8 +1,12 @@
+using BlogApp.Utils.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.ConfigureSqlContext(builder.Configuration);
+builder.Services.SetAuthentication();
+builder.Services.ConfigureCookie();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
