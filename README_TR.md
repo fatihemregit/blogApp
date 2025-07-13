@@ -3,11 +3,7 @@ Kendi Blog Yazýlarýmý kendi websitemde(fatihemrekilinc.xyz) yayýnlamak için geli
 ## Projenin Amacý
 Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþmak hem de web geliþtirme becerilerimi geliþtirmek.
 ## Bu Committe Yapýlan iþlemler
-- AutoMapper kütüphanesinin yüklenmesi,profil sýnýfýnýn yazýlmasý ve baðlantý iþlemleri için gerekli kod bloðunun extension metot olarak yazýlmasý.
-- Ýþ mantýðý kodlarý için Business Klasörünün ve Business te gerekli klasör altyapýsýnýn oluþturulmasý.
-- IAuthUserService ve IAuthRoleService interface lerinin kodlanmasý.
-- AuthUserService sýnýfýnýn ,IAuthUserService interface inden kalýtýlarak içeriðinin kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
-- AuthRoleService sýnýfýnýn ,IAuthRoleService interface inden kalýtýlarak içeriði kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
+- Custom Exception Altyapýsýnýn kurulmasý ve Business Klasörü içindeki Sýnýflara uygulanmasý
 ## Proje Günlüðü
 ### Gün 1 (26.06.2025)
 - Proje oluþturuldu.
@@ -31,7 +27,8 @@ Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþma
 - IAuthUserService ve IAuthRoleService interface leri kodlandý.
 - AuthUserService sýnýfý ,IAuthUserService interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
 - AuthRoleService sýnýfý ,IAuthRoleService interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
-
+### Gün 5 (13.07.2025)
+- Custom Exception Altyapýsý kuruldu ve Business Klasörü içindeki Sýnýflara uygulandý
 ### Yapýlacaklar
 - Custom Exception Altyapýsý kurulmasý
 - Custom Nullchecker yazýlmasý

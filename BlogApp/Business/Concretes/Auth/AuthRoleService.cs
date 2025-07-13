@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BlogApp.Business.Abstracts.Auth;
 using BlogApp.Models.Auth;
+using BlogApp.Models.Exceptions;
 using BlogApp.Models.IAuthRoleService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,8 @@ namespace BlogApp.Business.Concretes.Auth
             if (role is null)
             {
                 //identity exception fırlat(role  parameter is null)
+                throw new IdentityException("role  parameter is null");
+
             }
             IdentityResult result = await _roleManager.CreateAsync(_mapper.Map<AppRole>(role));
             if (result.Succeeded)
@@ -45,6 +48,8 @@ namespace BlogApp.Business.Concretes.Auth
             if (rolesInDb.Count <= 0)
             {
                 //identity exception fırlat(role  is not found)
+                throw new IdentityException("role  is not found");
+
             }
             List<IAuthRoleServiceGetAllRolesAsync> roles = _mapper.Map<List<IAuthRoleServiceGetAllRolesAsync>>(rolesInDb);
             return roles;
@@ -57,18 +62,24 @@ namespace BlogApp.Business.Concretes.Auth
             if (role is null)
             {
                 //identity exception fırlat(role parameter is null)
+                throw new IdentityException("role parameter is null");
+
             }
             //rolü id ile bulalım
             AppRole? foundRolewithId = await _roleManager.FindByIdAsync(role.SelectedRoleId);
             if (foundRolewithId is null)
             {
                 //identity exception fırlat(role not found)
+                throw new IdentityException("role not found");
+
             }
             //bu rolün aktif olarak kullanılıp kullanılmadığını öğrenelim
             IList<AppUser> getUsersInRole = await _userManager.GetUsersInRoleAsync(foundRolewithId.Name);
             if (getUsersInRole.Count >= 1)
             {
                 //identity exception fırlat(role is active)
+                throw new IdentityException("role is active");
+
             }
             //rol aktif olarak kullanılmıyor
             //rol silme
@@ -88,12 +99,16 @@ namespace BlogApp.Business.Concretes.Auth
             if (userEmail is null)
             {
                 //identity exception fırlat(userEmail parameter is null)
+                throw new IdentityException("userEmail parameter is null");
+
             }
             //email ile userı bulalım
             AppUser? foundUserbyEmail = await _userManager.FindByEmailAsync(userEmail);
             if (foundUserbyEmail is null)
             {
                 //identity exception fırlat(user not found)
+                throw new IdentityException("user not found");
+
             }
             //sistemdeki tüm rolleri alalım
             List<AppRole> rolesInDb = await _roleManager.Roles.ToListAsync();
@@ -101,6 +116,8 @@ namespace BlogApp.Business.Concretes.Auth
             if (rolesInDb.Count <= 0)
             {
                 //identity exception fırlat(does not have any roles in system)
+                throw new IdentityException("does not have any roles in system");
+
             }
             //bulunan kullanıcının tüm rollerini alalım
             IList<string>? foundUserRoles = await _userManager.GetRolesAsync(foundUserbyEmail);
@@ -120,12 +137,16 @@ namespace BlogApp.Business.Concretes.Auth
             if ((roles is null) || (userEmail is null) || (localUserName is null) )
             {
                 //identity exception fırlat(some parameters are null)
+                throw new IdentityException("some parameters are null");
+
             }
             //kullanıcıyı bulalım
             AppUser? foundUser = await _userManager.FindByEmailAsync(userEmail);
             if (foundUser is null)
             {
                 //identity exception fırlat(user not found)
+                throw new IdentityException("user not found");
+
             }
             //role listesine girip rol atama ve silme işlemlerini yapalım
             foreach (IAuthRoleServiceSetRoleForUserPost role in roles)

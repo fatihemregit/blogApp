@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BlogApp.Business.Abstracts.Auth;
 using BlogApp.Models.Auth;
+using BlogApp.Models.Exceptions;
 using BlogApp.Models.IAuthUserService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,7 @@ namespace BlogApp.Business.Concretes.Auth
             if (usersInDb.Count <= 0)
             {
                 //identity exception fırlat(user is not found)
+                throw new IdentityException("user is not found");
             }
             return _mapper.Map<List<IAuthUserServiceGetAllUsersAsyncResponse>>(usersInDb);
         }
@@ -38,6 +40,7 @@ namespace BlogApp.Business.Concretes.Auth
             if (user is null)
             {
                 //identity exception fırlat(user parameter is null)
+                throw new IdentityException("user parameter is null");
             }
             IdentityResult result = await _userManager.CreateAsync(_mapper.Map<AppUser>(user), user.Sifre);
             if (result.Succeeded)
@@ -47,6 +50,7 @@ namespace BlogApp.Business.Concretes.Auth
             else
             {
                 //identity exception fırlat(user is not created)
+                throw new IdentityException("user is not created");
             }
             return false;
         }
@@ -56,12 +60,16 @@ namespace BlogApp.Business.Concretes.Auth
             if (user is null)
             {
                 //identity exception fırlat(user parameter is null)
+                throw new IdentityException("user parameter is null");
+
             }
             //useri bulalım
             AppUser? foundUser = await _userManager.FindByEmailAsync(user.Email);
             if (foundUser is null) 
             {
                 //identity exception fırlat(user is not found)
+                throw new IdentityException("user is not found");
+
             }
             //İlgili kullanıcıya dair önceden oluşturulmuş bir Cookie varsa siliyoruz.
             await _signInManager.SignOutAsync();
@@ -92,6 +100,8 @@ namespace BlogApp.Business.Concretes.Auth
             if (foundUser is null)
             {
                 //identity exception fırlat(user is not found)
+                throw new IdentityException("user is not found");
+
             }
             //kullanıcıyı silelim(daha sonrasında safe delete eklenecek)
             IdentityResult result =  await _userManager.DeleteAsync(foundUser);
