@@ -1,6 +1,11 @@
-﻿using BlogApp.Data.Context;
+﻿using BlogApp.Business.Abstracts.Auth;
+using BlogApp.Business.Concretes.Auth;
+using BlogApp.Data.Context;
 using BlogApp.Models.Auth;
+using BlogApp.Utils.AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace BlogApp.Utils.Extensions
 {
@@ -14,13 +19,17 @@ namespace BlogApp.Utils.Extensions
                 );
         }
         //Business Extensions
-
+        public static void setInterfaceConcretesForBusinessLayer(this IServiceCollection services)
+        {
+            services.AddScoped<IAuthUserService, AuthUserService>();
+            services.AddScoped<IAuthRoleService, AuthRoleService>();
+        }
 
 
         //Main Extensions
         public static void SetAuthentication(this IServiceCollection services)
         {
-            services.AddIdentity<AppUser,AppRole>(options =>
+            services.AddIdentity<AppUser, AppRole>(options =>
             {
                 options.Password.RequiredLength = 8;//şifrenin kaç haneli olduğu
                 options.Password.RequireNonAlphanumeric = true; //Alfanumerik zorunluluğunu kaldırıyoruz.
@@ -52,5 +61,10 @@ namespace BlogApp.Utils.Extensions
             );
         }
 
+        //SetAutoMapper
+        public static void setAutoMapperForMainLayer(this IServiceCollection services)
+        {
+            services.AddAutoMapper(cfg => cfg.AddMaps(typeof(MappingProfileForMainLayer).Assembly));
+        }
     }
 }

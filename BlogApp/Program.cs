@@ -7,6 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.SetAuthentication();
 builder.Services.ConfigureCookie();
+builder.Services.setAutoMapperForMainLayer();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
