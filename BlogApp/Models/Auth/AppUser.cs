@@ -4,7 +4,7 @@ namespace BlogApp.Models.Auth
 {
     public class AppUser:IdentityUser<Guid>
     {
-        //writer objesi yazılacak
-        //public Guid WriterId { get; set; }
+        // Navigation Property: One AppUser has one Writer
+        public Writer Writer { get; set; }
     }
 }

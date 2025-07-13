@@ -3,7 +3,7 @@ Kendi Blog Yazýlarýmý kendi websitemde(fatihemrekilinc.xyz) yayýnlamak için geli
 ## Projenin Amacý
 Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþmak hem de web geliþtirme becerilerimi geliþtirmek.
 ## Bu Committe Yapýlan iþlemler
-- Custom Exception Altyapýsýnýn kurulmasý ve Business Klasörü içindeki Sýnýflara uygulanmasý
+- Blog,Writer Sýnýflarýnýn kodlanmasý ve tablolar arasý iliþkilerin kurulmasý.
 ## Proje Günlüðü
 ### Gün 1 (26.06.2025)
 - Proje oluþturuldu.
@@ -29,6 +29,7 @@ Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþma
 - AuthRoleService sýnýfý ,IAuthRoleService interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
 ### Gün 5 (13.07.2025)
 - Custom Exception Altyapýsý kuruldu ve Business Klasörü içindeki Sýnýflara uygulandý
+- Blog,Writer Sýnýflarý kodlandý ve tablolar arasý iliþkiler kuruldu.
 ### Yapýlacaklar
 - Custom Exception Altyapýsý kurulmasý
 - Custom Nullchecker yazýlmasý
