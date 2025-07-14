@@ -3,7 +3,9 @@ Kendi Blog Yazýlarýmý kendi websitemde(fatihemrekilinc.xyz) yayýnlamak için geli
 ## Projenin Amacý
 Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþmak hem de web geliþtirme becerilerimi geliþtirmek.
 ## Bu Committe Yapýlan iþlemler
-- Blog,Writer Sýnýflarýnýn kodlanmasý ve tablolar arasý iliþkilerin kurulmasý.
+- IBlogRepository ve IWriterRepository interface lerinin kodlanmasý
+- BlogRepository sýnýfýnýn,IBlogRepository interface inden kalýtýlarak içeriðinin kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
+- WriterRepository sýnýfýnýn,IWriterRepository interface inden kalýtýlarak içeriði kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
 ## Proje Günlüðü
 ### Gün 1 (26.06.2025)
 - Proje oluþturuldu.
@@ -30,7 +32,10 @@ Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþma
 ### Gün 5 (13.07.2025)
 - Custom Exception Altyapýsý kuruldu ve Business Klasörü içindeki Sýnýflara uygulandý
 - Blog,Writer Sýnýflarý kodlandý ve tablolar arasý iliþkiler kuruldu.
+### Gün 6 (14.07.2025)
+- IBlogRepository ve IWriterRepository interface leri kodlandý
+- BlogRepository sýnýfý,IBlogRepository interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
+- WriterRepository sýnýfý,IWriterRepository interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
 ### Yapýlacaklar
-- Custom Exception Altyapýsý kurulmasý
 - Custom Nullchecker yazýlmasý
 - SafeDelete mekanizmasýnýn kurulmasý

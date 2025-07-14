@@ -2,9 +2,13 @@
 using BlogApp.Business.Concretes.Auth;
 using BlogApp.Data.Context;
 using BlogApp.Models.Auth;
+using BlogApp.Data.Abstracts.Writer;
+using BlogApp.Data.Conrcetes.Writer;
 using BlogApp.Utils.AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using BlogApp.Data.Abstracts.Blog;
+using BlogApp.Data.Conrcetes.Blog;
 
 
 namespace BlogApp.Utils.Extensions
@@ -23,6 +27,8 @@ namespace BlogApp.Utils.Extensions
         {
             services.AddScoped<IAuthUserService, AuthUserService>();
             services.AddScoped<IAuthRoleService, AuthRoleService>();
+            services.AddScoped<IWriterRepository,WriterRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
         }
 
 
