@@ -1,6 +1,6 @@
 ﻿namespace BlogApp.Models.IBlogRepository
 {
-    public class IBlogRepositoryDeleteOneBlogRequest
+    public class IBlogRepositoryDeleteOneBlogAsyncRequest
     {
         public int Id { get; set; }
     }

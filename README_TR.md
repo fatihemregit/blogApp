@@ -3,9 +3,9 @@ Kendi Blog Yazýlarýmý kendi websitemde(fatihemrekilinc.xyz) yayýnlamak için geli
 ## Projenin Amacý
 Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþmak hem de web geliþtirme becerilerimi geliþtirmek.
 ## Bu Committe Yapýlan iþlemler
-- IBlogRepository ve IWriterRepository interface lerinin kodlanmasý
-- BlogRepository sýnýfýnýn,IBlogRepository interface inden kalýtýlarak içeriðinin kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
-- WriterRepository sýnýfýnýn,IWriterRepository interface inden kalýtýlarak içeriði kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
+- IBlogService ve IWriterService interface lerinin kodlandý
+- BlogService sýnýfýnýn,IBlogService interface inden kalýtýlarak içeriðinin kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
+- WriterService sýnýfýnýn,IWriterService interface inden kalýtýlarak içeriði kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
 ## Proje Günlüðü
 ### Gün 1 (26.06.2025)
 - Proje oluþturuldu.
@@ -36,6 +36,10 @@ Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþma
 - IBlogRepository ve IWriterRepository interface leri kodlandý
 - BlogRepository sýnýfý,IBlogRepository interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
 - WriterRepository sýnýfý,IWriterRepository interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
+### Gün 7 (15.07.2025)
+- IBlogService ve IWriterService interface leri kodlandý
+- BlogService sýnýfý,IBlogService interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
+- WriterService sýnýfý,IWriterService interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
 ### Yapýlacaklar
 - Custom Nullchecker yazýlmasý
 - SafeDelete mekanizmasýnýn kurulmasý

@@ -11,9 +11,9 @@ namespace BlogApp.Data.Abstracts.Blog
 
         Task<List<IBlogRepositoryGetAllBlogAsyncResponse>?> GetAllBlogAsync();
         //Update
-        Task<IBlogRepositoryUpdateOneBlogResponse?> UpdateOneBlog(IBlogRepositoryUpdateOneBlogRequest blog);
+        Task<IBlogRepositoryUpdateOneBlogAsyncResponse?> UpdateOneBlogAsync(IBlogRepositoryUpdateOneBlogAsyncRequest blog);
         //Delete
-        Task<bool> DeleteOneBlog(IBlogRepositoryDeleteOneBlogRequest blog);
+        Task<bool> DeleteOneBlogAsync(IBlogRepositoryDeleteOneBlogAsyncRequest blog);
 
 
     }

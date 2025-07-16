@@ -1,6 +1,6 @@
 ﻿namespace BlogApp.Models.IBlogRepository
 {
-    public class IBlogRepositoryUpdateOneBlogRequest
+    public class IBlogRepositoryUpdateOneBlogAsyncRequest
     {
         public int Id { get; set; }
 

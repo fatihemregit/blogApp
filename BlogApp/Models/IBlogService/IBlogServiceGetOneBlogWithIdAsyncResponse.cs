@@ -1,6 +1,6 @@
-﻿namespace BlogApp.Models.IBlogRepository
+﻿namespace BlogApp.Models.IBlogService
 {
-    public class IBlogRepositoryUpdateOneBlogResponse
+    public class IBlogServiceGetOneBlogWithIdAsyncResponse
     {
         public int Id { get; set; }
 
@@ -9,6 +9,5 @@
         public string Content { get; set; }
         public int WriterId { get; set; }
     }
-
 
 }

@@ -55,7 +55,7 @@ namespace BlogApp.Data.Conrcetes.Blog
 
 
 
-        public async Task<IBlogRepositoryUpdateOneBlogResponse?> UpdateOneBlog(IBlogRepositoryUpdateOneBlogRequest blog)
+        public async Task<IBlogRepositoryUpdateOneBlogAsyncResponse?> UpdateOneBlogAsync(IBlogRepositoryUpdateOneBlogAsyncRequest blog)
         {
             Models.Blog? blogInDb = await _context.Blogs.FirstOrDefaultAsync(b => b.Id == blog.Id);
             if (blogInDb is null)
@@ -71,10 +71,10 @@ namespace BlogApp.Data.Conrcetes.Blog
             {
                 return null;
             }
-            return _mapper.Map<IBlogRepositoryUpdateOneBlogResponse>(blogInDb);
+            return _mapper.Map<IBlogRepositoryUpdateOneBlogAsyncResponse>(blogInDb);
         }
 
-        public async Task<bool> DeleteOneBlog(IBlogRepositoryDeleteOneBlogRequest blog)
+        public async Task<bool> DeleteOneBlogAsync(IBlogRepositoryDeleteOneBlogAsyncRequest blog)
         {
             //Daha sonralarında safe delete kullanalım
             Models.Blog? blogInDb = await _context.Blogs.FirstOrDefaultAsync(b => b.Id == blog.Id);
