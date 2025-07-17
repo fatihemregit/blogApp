@@ -1,0 +1,30 @@
+﻿@model List< BlogApp.Models.WriterController.GetAllWriterViewModel>
+<h1>Tüm Yazarlar</h1>
+<hr />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><label asp-for="@Model.First().profileUrl"></label></th>
+            <th><label asp-for="@Model.First().Id"></label></th>
+            <th><label asp-for="@Model.First().Name"></label></th>
+            <th><label asp-for="@Model.First().Description"></label></th>
+            <th><label asp-for="@Model.First().AppUserId"></label></th>
+            <th>Yönet</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BlogApp.Models.WriterController.GetAllWriterViewModel item in Model)
+        {
+            <tr>
+                <td><img src="@item.profileUrl" width="50" height="50" /></td>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.AppUserId</td>
+                <td><a href="@Url.Action("WriterDetail", "Writer", new { writerId = item.Id })">Detay</a> | <a href="@Url.Action("WriterUpdate", "Writer", new { writerId = item.Id })">Güncelle</a> | <a href="@Url.Action("WriterDelete", "Writer", new { writerId = item.Id })" style="color:red">Sil</a></td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>

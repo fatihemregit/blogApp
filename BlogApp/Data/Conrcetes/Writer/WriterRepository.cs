@@ -22,6 +22,7 @@ namespace BlogApp.Data.Conrcetes.Writer
         public async Task<IWriterRepositoryCrateOneWriterAsyncResponse?> CrateOneWriterAsync(IWriterRepositoryCrateOneWriterAsyncRequest writer)
         {
             Models.Writer writerDto = _mapper.Map<Models.Writer>(writer);
+            Console.WriteLine("(Writer Repository) writer appUser id : " + writerDto.AppUserId);
             await _context.Writers.AddAsync(writerDto);
             int result = await _context.SaveChangesAsync();
             if (result <= 0)

@@ -26,6 +26,9 @@ namespace BlogApp.Business.Concretes.Writer
                 throw new WriterServiceException("writer parameter is null");
 
             }
+            writer.Description = (writer.Description is null) ? "" : writer.Description;
+            writer.profileUrl = (writer.profileUrl is null) ? "" : writer.profileUrl;
+
             IWriterRepositoryCrateOneWriterAsyncRequest request = _mapper.Map<IWriterRepositoryCrateOneWriterAsyncRequest>(writer);
             IWriterRepositoryCrateOneWriterAsyncResponse? response = await _repository.CrateOneWriterAsync(request);
             if (response is null)
@@ -70,6 +73,9 @@ namespace BlogApp.Business.Concretes.Writer
                 throw new WriterServiceException("writer parameter is null");
 
             }
+            writer.Description = (writer.Description is null) ? "" : writer.Description;
+            writer.profileUrl = (writer.profileUrl is null) ? "" : writer.profileUrl;
+
             IWriterRepositoryUpdateOneWriterRequest request = _mapper.Map<IWriterRepositoryUpdateOneWriterRequest>(writer);
             IWriterRepositoryUpdateOneWriterResponse? response = await _repository.UpdateOneWriter(request);
             if (response is null)
@@ -88,7 +94,6 @@ namespace BlogApp.Business.Concretes.Writer
 
             IWriterRepositoryDeleteOneWriterRequest request = _mapper.Map<IWriterRepositoryDeleteOneWriterRequest>(writer);
             bool response = await _repository.DeleteOneWriter(request);
-
             if (!response)
             {
                 throw new WriterServiceException("response is false");   

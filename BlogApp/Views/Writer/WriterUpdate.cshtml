@@ -1,0 +1,45 @@
+﻿@model BlogApp.Models.WriterController.WriterUpdateViewModel
+
+<h1>Yazar Güncelleme</h1>
+<hr />
+<form asp-action="WriterUpdate" asp-controller="Writer" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="row pb-2">
+        <label asp-for="Id" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="Id" class="form-control" readonly />
+        </div>
+    </div>
+
+    <div class="row pb-2">
+        <label asp-for="Name" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="Name" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="row pb-2">
+        <label asp-for="Description" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="Description" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="row pb-2">
+        <label asp-for="profileUrl" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="profileUrl" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="row pb-2">
+        <label asp-for="AppUserId" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="AppUserId" class="form-control" readonly />
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+
+</form>

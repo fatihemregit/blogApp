@@ -9,6 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using BlogApp.Data.Abstracts.Blog;
 using BlogApp.Data.Conrcetes.Blog;
+using BlogApp.Business.Abstracts.Writer;
+using BlogApp.Business.Concretes.Writer;
+using BlogApp.Business.Abstracts.Blog;
+using BlogApp.Business.Concretes.Blog;
 
 
 namespace BlogApp.Utils.Extensions
@@ -35,7 +39,8 @@ namespace BlogApp.Utils.Extensions
         {
             services.AddScoped<IAuthUserService, AuthUserService>();
             services.AddScoped<IAuthRoleService, AuthRoleService>();
-
+            services.AddScoped<IWriterService, WriterService>();
+            services.AddScoped<IBlogService, BlogService>();
         }
 
 

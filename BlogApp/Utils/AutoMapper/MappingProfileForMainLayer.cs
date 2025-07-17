@@ -10,14 +10,13 @@ using BlogApp.Models.IBlogRepository;
 using BlogApp.Models.IBlogService;
 using BlogApp.Models.IWriterRepository;
 using BlogApp.Models.IWriterService;
+using BlogApp.Models.WriterController;
 namespace BlogApp.Utils.AutoMapper
 {
     public class MappingProfileForMainLayer:Profile
     {
         public MappingProfileForMainLayer()
         {
-
-
             //Data
 
             //IWriterRepository
@@ -27,6 +26,9 @@ namespace BlogApp.Utils.AutoMapper
             //Writer to IWriterRepositoryCrateOneWriterAsyncResponse
             CreateMap<Writer, IWriterRepositoryCrateOneWriterAsyncResponse>();
             CreateMap<IWriterRepositoryCrateOneWriterAsyncResponse, Writer>();
+            //Writer to IWriterRepositoryGetAllWriterAsyncResponse
+            CreateMap<Writer, IWriterRepositoryGetAllWriterAsyncResponse>();
+            CreateMap<IWriterRepositoryGetAllWriterAsyncResponse, Writer>();
             //Writer to IWriterRepositoryGetOneWriterWithWriterIdAsyncResponse
             CreateMap<Writer, IWriterRepositoryGetOneWriterWithWriterIdAsyncResponse>();
             CreateMap<IWriterRepositoryGetOneWriterWithWriterIdAsyncResponse, Writer>();
@@ -152,6 +154,24 @@ namespace BlogApp.Utils.AutoMapper
             //SetRoleViewModel to IAuthRoleServiceSetRoleForUserPost
             CreateMap<SetRoleViewModel, IAuthRoleServiceSetRoleForUserPost>();
             CreateMap<IAuthRoleServiceSetRoleForUserPost, SetRoleViewModel>();
+
+            //WriterController
+            //CreateWriterViewModel to IWriterServiceCreateOneWriterAsyncRequest
+            CreateMap<CreateWriterViewModel, IWriterServiceCreateOneWriterAsyncRequest>();
+            CreateMap<IWriterServiceCreateOneWriterAsyncRequest, CreateWriterViewModel>();
+            //GetAllWriterViewModel to IWriterServiceGetAllWriterAsyncResponse
+            CreateMap<GetAllWriterViewModel, IWriterServiceGetAllWriterAsyncResponse>();
+            CreateMap<IWriterServiceGetAllWriterAsyncResponse, GetAllWriterViewModel>();
+            //WriterDetailViewModel to IWriterServiceGetOneWriterWithIdAsyncResponse
+            CreateMap<WriterDetailViewModel, IWriterServiceGetOneWriterWithIdAsyncResponse>();
+            CreateMap<IWriterServiceGetOneWriterWithIdAsyncResponse, WriterDetailViewModel>();
+            //WriterUpdateViewModel to IWriterServiceGetOneWriterWithIdAsyncResponse
+            CreateMap<WriterUpdateViewModel, IWriterServiceGetOneWriterWithIdAsyncResponse>();
+            CreateMap<IWriterServiceGetOneWriterWithIdAsyncResponse, WriterUpdateViewModel>();
+            //WriterUpdateViewModel to IWriterServiceUpdateOneWriterAsyncRequest
+            CreateMap<WriterUpdateViewModel, IWriterServiceUpdateOneWriterAsyncRequest>();
+            CreateMap<IWriterServiceUpdateOneWriterAsyncRequest, WriterUpdateViewModel>();
+
         }
     }
 }

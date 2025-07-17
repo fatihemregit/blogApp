@@ -1,0 +1,43 @@
+﻿@model BlogApp.Models.WriterController.WriterDetailViewModel
+
+<h1>Yazar Detay @Model.Name</h1>
+<hr />
+
+
+<div class="row pb-2">
+    <label asp-for="profileUrl" class="col-md-3"></label>
+    <div class="col-md-9">
+        <img src="@Model.profileUrl">
+    </div>
+</div>
+
+<div class="row pb-2">
+    <label asp-for="Id" class="col-md-3"></label>
+    <div class="col-md-9">
+        <p>@Model.Id</p>
+    </div>
+</div>
+
+<div class="row pb-2">
+    <label asp-for="Name" class="col-md-3"></label>
+    <div class="col-md-9">
+        <p>@Model.Name</p>
+    </div>
+</div>
+
+<div class="row pb-2">
+    <label asp-for="Description" class="col-md-3"></label>
+    <div class="col-md-9">
+        <p>@Model.Description</p>
+    </div>
+</div>
+
+
+<div class="row pb-2">
+    <label asp-for="AppUserId" class="col-md-3"></label>
+    <div class="col-md-9">
+        <p>@Model.AppUserId</p>
+    </div>
+</div>
+<br />
+<a href="@Url.Action("GetAllWriters","Writer")">tüm yazarlara git</a>
