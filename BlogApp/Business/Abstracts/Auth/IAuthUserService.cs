@@ -4,8 +4,12 @@ namespace BlogApp.Business.Abstracts.Auth
 {
     public interface IAuthUserService
     {
-        Task<List<IAuthUserServiceGetAllUsersAsyncResponse>?> GetAllUsersAsync();
-        Task<bool> SignIn(IAuthUserServiceSignInRequest user);
+        Task<List<IAuthUserServiceGetAllUsersAsyncResponse>> GetAllUsersAsync();
+
+        Task<IAuthUserServiceGetOneUserAsyncResponse> GetOneUserAsync(IAuthUserServiceGetOneUserAsyncRequest user);
+
+
+        Task<IAuthUserServiceSignInResponse> SignIn(IAuthUserServiceSignInRequest user);
 
         Task<bool> Login(IAuthUserServiceLoginRequest user);
         Task Logout();

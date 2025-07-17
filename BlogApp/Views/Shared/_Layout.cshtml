@@ -23,13 +23,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active text-secondary" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active text-secondary" aria-current="page" href="#">Anasayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">Features</a>
+                        <a class="nav-link text-secondary" href="@Url.Action("GetAllUsers", "AuthUser")">Kullanıcıları Listele</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">Pricing</a>
+                        <a class="nav-link text-secondary" href="@Url.Action("CreateUser", "AuthUser")">Kaydol</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="@Url.Action("LoginUser", "AuthUser")">Giriş Yap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="@Url.Action("LogoutUser", "AuthUser")">Çıkış Yap</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled text-secondary">Disabled</a>
@@ -42,5 +48,9 @@
         @RenderBody()
     </div>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 </body>
 </html>

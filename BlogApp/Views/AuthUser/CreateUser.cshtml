@@ -1,0 +1,31 @@
+﻿@model BlogApp.Models.AuthUserController.CreateUserViewModel
+
+
+<form asp-controller="AuthUser" asp-action="CreateUser"  method="post">
+
+    <div asp-validation-summary="All" class="text-danger p-2"></div>
+
+    <div class="row p-2">
+        <label asp-for="UserName" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="UserName" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <label asp-for="Email" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="Email" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <label asp-for="Sifre" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="Sifre" class="form-control" />
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Kayıt Oluştur</button>
+</form>
+
+

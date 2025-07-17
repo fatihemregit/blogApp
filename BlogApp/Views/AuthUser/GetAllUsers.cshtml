@@ -1,0 +1,34 @@
+﻿@model List<BlogApp.Models.AuthUserController.GetAllUserViewModel>
+
+
+<p>Şu an Giriş Yapan Kullanıcı @TempData["localUserName"]</p>
+<hr />
+<table class="table table-striped p-5">
+    <thead>
+        <tr>
+            <th scope="col"><label asp-for="@Model.First().Id"></label></th>
+            <th scope="col"><label asp-for="@Model.First().UserName"></label></th>
+            <th scope="col"><label asp-for="@Model.First().Email"></label></th>
+            <th scope="col">Yönet</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BlogApp.Models.AuthUserController.GetAllUserViewModel item in Model)
+        {
+
+            <tr>
+                <th>@item.Id</th>
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
+                <td><a href="@Url.Action("UserDetail", "AuthUser", new { userId = item.Id })">Detay</a> | <a href="@Url.Action("SetRole", "AuthRole", new { userEmail = item.Email })">Rol İşlemleri</a> | <a href="@Url.Action("DeleteUser", "AuthUser", new { userName = item.UserName })" style="color:red">Kullanıcıyı sil</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<hr />
+<p>Rol İşlemleri</p>
+<br />
+<a href="@Url.Action("CreateRole", "AuthRole")">Rol Ekle</a>
+<br />
+<a href="@Url.Action("DeleteRole", "AuthRole")">Rol Sil</a>

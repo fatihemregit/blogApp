@@ -1,0 +1,26 @@
+﻿@model BlogApp.Models.AuthUserController.LoginUserViewModel
+
+
+<form asp-action="LoginUser" asp-controller="AuthUser" asp-route-ReturnUrl="@TempData["ReturnUrl"]" asp- method="post">
+    <div asp-validation-summary="All" class="text-danger p-2"></div>
+
+    <div class="row p-2">
+        <label asp-for="Email" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="Email" class="form-control" />
+        </div>
+    </div>
+    <div class="row p-2">
+        <label asp-for="Password" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="Password" class="form-control" />
+        </div>
+    </div>
+    <div class="row p-2">
+        <label asp-for="Persistent" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input type="checkbox" value="true" asp-for="Persistent" class="form-check-input" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Giriş Yap</button>
+</form>

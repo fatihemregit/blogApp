@@ -1,0 +1,10 @@
+﻿@model BlogApp.Models.AuthRoleController.DeleteRoleViewModel
+<h1>Rol Silme Ekranı</h1>
+<hr />
+<form asp-action="DeleteRole" asp-controller="AuthRole" method="post">
+    <labe class="col-md-3 pb-2">Rol Adı</labe>
+    <div class="col-md-9 pb-2">
+        <select asp-for="Id" asp-items="@ViewBag.RoleNames"></select>
+    </div>
+    <button type="submit" class="btn btn-danger">Rolü Sil</button>
+</form>

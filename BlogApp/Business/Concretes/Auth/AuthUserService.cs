@@ -23,7 +23,7 @@ namespace BlogApp.Business.Concretes.Auth
         }
 
 
-        public async Task<List<IAuthUserServiceGetAllUsersAsyncResponse>?> GetAllUsersAsync()
+        public async Task<List<IAuthUserServiceGetAllUsersAsyncResponse>> GetAllUsersAsync()
         {
             List<AppUser> usersInDb = await _userManager.Users.ToListAsync();
             if (usersInDb.Count <= 0)
@@ -34,7 +34,24 @@ namespace BlogApp.Business.Concretes.Auth
             return _mapper.Map<List<IAuthUserServiceGetAllUsersAsyncResponse>>(usersInDb);
         }
 
-        public async Task<bool> SignIn(IAuthUserServiceSignInRequest user)
+        public async Task<IAuthUserServiceGetOneUserAsyncResponse> GetOneUserAsync(IAuthUserServiceGetOneUserAsyncRequest user)
+        {
+            if (user is null)
+            { 
+                throw new IdentityException("user parameter is null");
+            }
+            AppUser? foundUser = await _userManager.FindByIdAsync(user.Id.ToString());
+            if (foundUser is null)
+            {
+                throw new IdentityException("user is not found");
+            }
+            return _mapper.Map<IAuthUserServiceGetOneUserAsyncResponse>(foundUser);
+
+        }
+
+
+        //yeni kayıt
+        public async Task<IAuthUserServiceSignInResponse> SignIn(IAuthUserServiceSignInRequest user)
         {
             //null check(daha sonraları kendi null checkimizi kullanacağız)
             if (user is null)
@@ -42,24 +59,32 @@ namespace BlogApp.Business.Concretes.Auth
                 //identity exception fırlat(user parameter is null)
                 throw new IdentityException("user parameter is null");
             }
-            IdentityResult result = await _userManager.CreateAsync(_mapper.Map<AppUser>(user), user.Sifre);
+            AppUser requestForResult = new AppUser()
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+            };
+            IdentityResult result = await _userManager.CreateAsync(requestForResult, user.Sifre);
             if (result.Succeeded)
             {
-                return true;
+                return new IAuthUserServiceSignInResponse() { result = true,identityErrors = null};
             }
             else
             {
                 //identity exception fırlat(user is not created)
+                return new IAuthUserServiceSignInResponse() { result = false, identityErrors = result.Errors };
                 throw new IdentityException("user is not created");
             }
-            return false;
+            return new IAuthUserServiceSignInResponse() { result = false,identityErrors = null};
         }
+        //giriş
         public async Task<bool> Login(IAuthUserServiceLoginRequest user)
         {
             //null check
             if (user is null)
             {
                 //identity exception fırlat(user parameter is null)
+                return false;
                 throw new IdentityException("user parameter is null");
 
             }
@@ -68,6 +93,7 @@ namespace BlogApp.Business.Concretes.Auth
             if (foundUser is null) 
             {
                 //identity exception fırlat(user is not found)
+                return false;
                 throw new IdentityException("user is not found");
 
             }
@@ -75,6 +101,7 @@ namespace BlogApp.Business.Concretes.Auth
             await _signInManager.SignOutAsync();
             //giriş yapalım
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(foundUser,user.Password,user.Persistent,false);
+            
             if (result.Succeeded)
             {
                 return true;
@@ -94,6 +121,7 @@ namespace BlogApp.Business.Concretes.Auth
             if (userName is null)
             {
                 //identity exception fırlat(username parameter is null)
+                throw new IdentityException("username parameter is null");
             }
             //kullanıcıyı bulalım
             AppUser? foundUser = await _userManager.FindByNameAsync(userName);

@@ -10,7 +10,7 @@ namespace BlogApp.Business.Abstracts.Auth
 
         Task<bool> DeleteRolePost(IAuthRoleServiceDeleteRolePostRequest role);
 
-        Task<bool> SetRoleForUserGet(string userEmail);
+        Task<List<IAuthRoleServiceSetRoleForUserGet>> SetRoleForUserGet(string userEmail);
         Task<bool> SetRoleForUserPost(List<IAuthRoleServiceSetRoleForUserPost> roles, string userEmail, string localUserName);
     }
 }

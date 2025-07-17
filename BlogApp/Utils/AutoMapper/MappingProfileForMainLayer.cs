@@ -2,6 +2,8 @@
 using BlogApp.Business.Abstracts.Writer;
 using BlogApp.Models;
 using BlogApp.Models.Auth;
+using BlogApp.Models.AuthRoleController;
+using BlogApp.Models.AuthUserController;
 using BlogApp.Models.IAuthRoleService;
 using BlogApp.Models.IAuthUserService;
 using BlogApp.Models.IBlogRepository;
@@ -63,8 +65,11 @@ namespace BlogApp.Utils.AutoMapper
             //AppUser to IAuthUserServiceFindLocalUserwithUserNameResponse
             CreateMap<AppUser, IAuthUserServiceFindLocalUserwithUserNameResponse>();
             CreateMap<IAuthUserServiceFindLocalUserwithUserNameResponse, AppUser>();
-            
-            
+            //AppUser to IAuthUserServiceGetOneUserAsyncResponse
+            CreateMap<AppUser, IAuthUserServiceGetOneUserAsyncResponse>();
+            CreateMap<IAuthUserServiceGetOneUserAsyncResponse, AppUser>();
+
+
             //IAuthRoleService
             //AppRole to IAuthRoleServiceCreateRolePostRequest
             CreateMap<AppRole, IAuthRoleServiceCreateRolePostRequest>();
@@ -125,6 +130,28 @@ namespace BlogApp.Utils.AutoMapper
             CreateMap<IWriterServiceDeleteOneWriterAsyncRequest, IWriterRepositoryDeleteOneWriterRequest>();
             CreateMap<IWriterRepositoryDeleteOneWriterRequest, IWriterServiceDeleteOneWriterAsyncRequest>();
 
+            //Main
+            //AuthUserController
+            //CreateUserViewModel to IAuthUserServiceSignInRequest
+            CreateMap<CreateUserViewModel, IAuthUserServiceSignInRequest>();
+            CreateMap<IAuthUserServiceSignInRequest, CreateUserViewModel>();
+            //LoginUserViewModel to IAuthUserServiceLoginRequest
+            CreateMap<LoginUserViewModel, IAuthUserServiceLoginRequest>();
+            CreateMap<IAuthUserServiceLoginRequest, LoginUserViewModel>();
+            //GetAllUserViewModel to IAuthUserServiceGetAllUsersAsyncResponse
+            CreateMap<GetAllUserViewModel, IAuthUserServiceGetAllUsersAsyncResponse>();
+            CreateMap<IAuthUserServiceGetAllUsersAsyncResponse, GetAllUserViewModel>();
+            //UserDetailViewModel to IAuthUserServiceGetOneUserAsyncResponse
+            CreateMap<UserDetailViewModel, IAuthUserServiceGetOneUserAsyncResponse>();
+            CreateMap<IAuthUserServiceGetOneUserAsyncResponse, UserDetailViewModel>();
+
+            //AuthRoleController
+            //SetRoleViewModel to IAuthRoleServiceSetRoleForUserGet
+            CreateMap<SetRoleViewModel, IAuthRoleServiceSetRoleForUserGet>();
+            CreateMap<IAuthRoleServiceSetRoleForUserGet, SetRoleViewModel>();
+            //SetRoleViewModel to IAuthRoleServiceSetRoleForUserPost
+            CreateMap<SetRoleViewModel, IAuthRoleServiceSetRoleForUserPost>();
+            CreateMap<IAuthRoleServiceSetRoleForUserPost, SetRoleViewModel>();
         }
     }
 }

@@ -5,7 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Data Extensions
 builder.Services.ConfigureSqlContext(builder.Configuration);
+builder.Services.setInterfaceConcretesForDataLayer();
+//Business Extensions
+builder.Services.setInterfaceConcretesForBusinessLayer();
+
+//Main Extensions
 builder.Services.SetAuthentication();
 builder.Services.ConfigureCookie();
 builder.Services.setAutoMapperForMainLayer();
@@ -23,7 +29,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

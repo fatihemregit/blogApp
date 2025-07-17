@@ -1,4 +1,6 @@
-﻿namespace BlogApp.Models.Exceptions
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace BlogApp.Models.Exceptions
 {
     public class IdentityException : CustomException
     {

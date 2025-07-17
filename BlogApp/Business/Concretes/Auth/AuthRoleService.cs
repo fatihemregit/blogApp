@@ -93,7 +93,7 @@ namespace BlogApp.Business.Concretes.Auth
 
         }
 
-        public async Task<bool> SetRoleForUserGet(string userEmail)
+        public async Task<List<IAuthRoleServiceSetRoleForUserGet>> SetRoleForUserGet(string userEmail)
         {
             //null check
             if (userEmail is null)
@@ -128,7 +128,7 @@ namespace BlogApp.Business.Concretes.Auth
             {
                 setroles.Add(new IAuthRoleServiceSetRoleForUserGet { RoleName = role.Name, State = foundUserRolesNullState ? false: foundUserRoles.Any(s => s == role.Name)});
             }
-            return true;
+            return setroles;
         }
 
         public async Task<bool> SetRoleForUserPost(List<IAuthRoleServiceSetRoleForUserPost> roles, string userEmail, string localUserName)

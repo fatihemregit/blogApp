@@ -3,9 +3,8 @@ Kendi Blog Yazýlarýmý kendi websitemde(fatihemrekilinc.xyz) yayýnlamak için geli
 ## Projenin Amacý
 Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþmak hem de web geliþtirme becerilerimi geliþtirmek.
 ## Bu Committe Yapýlan iþlemler
-- IBlogService ve IWriterService interface lerinin kodlandý
-- BlogService sýnýfýnýn,IBlogService interface inden kalýtýlarak içeriðinin kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
-- WriterService sýnýfýnýn,IWriterService interface inden kalýtýlarak içeriði kodlanmasý ve gerekli sýnýflarýn kodlanmasý.
+- AuthUserController ve AuthRoleController sýnýflarýnýn kodlanmasý ve diðer sýnýflarda gerekli düzenlemelerin yapýlmasý.
+- AuthUserController ve AuthRoleController sýnýflarý için gerekli yardýmcý sýnýflarýn kodlanmasý
 ## Proje Günlüðü
 ### Gün 1 (26.06.2025)
 - Proje oluþturuldu.
@@ -40,6 +39,9 @@ Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþma
 - IBlogService ve IWriterService interface leri kodlandý
 - BlogService sýnýfý,IBlogService interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
 - WriterService sýnýfý,IWriterService interface inden kalýtýlarak içeriði kodlandý ve gerekli sýnýflar kodlandý.
+### Gün 8 (16.07.2025)
+- AuthUserController ve AuthRoleController sýnýflarý kodlandý ve diðer sýnýflarda gerekli düzenlemeler yapýldý.
+- AuthUserController ve AuthRoleController sýnýflarý için gerekli yardýmcý sýnýflar kodlandý.
 ### Yapýlacaklar
 - Custom Nullchecker yazýlmasý
 - SafeDelete mekanizmasýnýn kurulmasý
