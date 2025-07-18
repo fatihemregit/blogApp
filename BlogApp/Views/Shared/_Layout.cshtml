@@ -10,20 +10,37 @@
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BlogApp.styles.css" asp-append-version="true" />
+    <script src="~/lib/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+          selector: '#mytextarea',
+          license_key: 'gpl',
+        plugins: 'lists link image code preview wordcount ',
+        toolbar: 'undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image media | code preview fullscreen | searchreplace wordcount',
+        branding: false
+        });
+    </script>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Blog Site</a>
-            <button class="navbar-toggler"  type="button"
+            <button class="navbar-toggler" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <i class="navbar-toggler-icon"></i>
+                <i class="navbar-toggler-icon"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("Index", "Test")">Anasayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("CreateBlog", "Blog")">Yeni Blog Yazısı</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("ListAllBlogs", "Blog")">Blogları Listele</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("CreateWriter", "Writer")">Yazar Kaydı</a>

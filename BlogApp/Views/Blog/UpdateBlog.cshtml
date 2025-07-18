@@ -1,0 +1,20 @@
+﻿@model BlogApp.Models.BlogController.UpdateBlogViewModel
+
+<h1>Yeni Blog Yazısı</h1>
+<hr />
+<form asp-action="UpdateBlog" asp-controller="Blog" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="row">
+        <label asp-for="Title" class="col-md-3"></label>
+        <div class="col-md-9">
+            <input asp-for="Title" class="form-control" />
+        </div>
+    </div>
+    <label asp-for="Content" class="pb-2"></label>
+    <br>
+    <br>
+    <textarea asp-for="Content" class="pb-2" id="mytextarea">
+    </textarea>
+    <input type="hidden" asp-for="WriterId" />
+    <button class="btn btn-primary p-2" type="submit">Güncelle</button>
+</form>

@@ -4,6 +4,7 @@ using BlogApp.Models;
 using BlogApp.Models.Auth;
 using BlogApp.Models.AuthRoleController;
 using BlogApp.Models.AuthUserController;
+using BlogApp.Models.BlogController;
 using BlogApp.Models.IAuthRoleService;
 using BlogApp.Models.IAuthUserService;
 using BlogApp.Models.IBlogRepository;
@@ -171,6 +172,22 @@ namespace BlogApp.Utils.AutoMapper
             //WriterUpdateViewModel to IWriterServiceUpdateOneWriterAsyncRequest
             CreateMap<WriterUpdateViewModel, IWriterServiceUpdateOneWriterAsyncRequest>();
             CreateMap<IWriterServiceUpdateOneWriterAsyncRequest, WriterUpdateViewModel>();
+            //BlogController
+            //CreateBlogViewModel to IBlogServiceCreateOneBlogAsyncRequest
+            CreateMap<CreateBlogViewModel, IBlogServiceCreateOneBlogAsyncRequest>();
+            CreateMap<IBlogServiceCreateOneBlogAsyncRequest, CreateBlogViewModel>();
+            //DetailBlogViewModel to IBlogServiceGetOneBlogWithIdAsyncResponse
+            CreateMap<DetailBlogViewModel, IBlogServiceGetOneBlogWithIdAsyncResponse>();
+            CreateMap<IBlogServiceGetOneBlogWithIdAsyncResponse, DetailBlogViewModel>();
+            //UpdateBlogViewModel to IBlogServiceGetOneBlogWithIdAsyncResponse
+            CreateMap<UpdateBlogViewModel, IBlogServiceGetOneBlogWithIdAsyncResponse>();
+            CreateMap<IBlogServiceGetOneBlogWithIdAsyncResponse, UpdateBlogViewModel>();
+            //UpdateBlogViewModel to IBlogServiceUpdateOneBlogAsyncRequest
+            CreateMap<UpdateBlogViewModel, IBlogServiceUpdateOneBlogAsyncRequest>();
+            CreateMap<IBlogServiceUpdateOneBlogAsyncRequest, UpdateBlogViewModel>();
+            //ListAllBlogViewModel to IBlogServiceGetAllBlogAsyncResponse
+            CreateMap<ListAllBlogViewModel, IBlogServiceGetAllBlogAsyncResponse>();
+            CreateMap<IBlogServiceGetAllBlogAsyncResponse, ListAllBlogViewModel>();
 
         }
     }

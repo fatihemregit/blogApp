@@ -1,0 +1,25 @@
+﻿@model List<BlogApp.Models.BlogController.ListAllBlogViewModel>
+<h1>Tüm Yazılar</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><label asp-for="@Model.First().Id"></label></th>
+            <th><label asp-for="@Model.First().Title"></label></th>
+            <th><label asp-for="@Model.First().WriterId"></label></th>
+            <th>Yönet</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (BlogApp.Models.BlogController.ListAllBlogViewModel item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.WriterId</td>
+                <td><a href="@Url.Action("DetailBlog", "Blog", new { blogId = item.Id })">Oku</a> | <a href="@Url.Action("UpdateBlog", "Blog", new { blogId = item.Id })">Güncelle</a> | <a style="color:red" href="@Url.Action("DeleteBlog", "Blog", new { blogId = item.Id })">Sil</a> </td>
+            </tr>
+        }
+    </tbody>
+</table>

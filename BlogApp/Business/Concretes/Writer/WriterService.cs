@@ -2,21 +2,25 @@
 using Azure;
 using BlogApp.Business.Abstracts.Writer;
 using BlogApp.Data.Abstracts.Writer;
+using BlogApp.Models.Auth;
 using BlogApp.Models.Exceptions;
 using BlogApp.Models.IWriterRepository;
 using BlogApp.Models.IWriterService;
+using Microsoft.AspNetCore.Identity;
 
 namespace BlogApp.Business.Concretes.Writer
 {
     public class WriterService : IWriterService
     {
         private readonly IWriterRepository _repository;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
 
-        public WriterService(IWriterRepository repository, IMapper mapper)
+        public WriterService(IWriterRepository repository, IMapper mapper, UserManager<AppUser> userManager)
         {
             _repository = repository;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         public async Task<IWriterServiceCreateOneWriterAsyncResponse> CreateOneWriterAsync(IWriterServiceCreateOneWriterAsyncRequest writer)
@@ -63,6 +67,31 @@ namespace BlogApp.Business.Concretes.Writer
                 throw new WriterServiceException("response is null");
             }
             return _mapper.Map<List<IWriterServiceGetAllWriterAsyncResponse>>(response);
+        }
+        public async Task<int> GetWriterIdWithAppUserName(string username)
+        {
+            //null check
+            if (username is null)
+            { 
+                throw new WriterServiceException("userName parameter is null");
+            }
+            AppUser? foundUser = await _userManager.FindByNameAsync(username);
+            if (foundUser is null)
+            {
+                throw new WriterServiceException("user not found");
+
+            }
+            List<IWriterRepositoryGetAllWriterAsyncResponse>? allWritersInDb = await _repository.GetAllWriterAsync();
+            if (allWritersInDb is null)
+            {
+                throw new WriterServiceException("does not have writer");
+            }
+            IWriterRepositoryGetAllWriterAsyncResponse? writerInDb = allWritersInDb.Where(w => w.AppUserId == foundUser.Id).FirstOrDefault();
+            if (writerInDb is null)
+            {
+                throw new WriterServiceException("Writer Not Found");
+            }
+            return writerInDb.Id;
         }
 
 

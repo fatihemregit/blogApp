@@ -1,0 +1,15 @@
+﻿@model BlogApp.Models.BlogController.DetailBlogViewModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="p-4">
+
+    <h1 class="p-2">@Model.Title</h1>
+    <p class="opacity-50 p-2">@Model.WriterName Tarafından yazıldı</p>
+    <hr>
+    <div class=writeContent>
+        @Html.Raw(Model.Content)
+    </div>
+</div>

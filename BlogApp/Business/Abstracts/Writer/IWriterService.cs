@@ -9,6 +9,8 @@ namespace BlogApp.Business.Abstracts.Writer
         //Read
         Task<IWriterServiceGetOneWriterWithIdAsyncResponse> GetOneWriterWithIdAsync(IWriterServiceGetOneWriterWithIdAsyncRequest writer);
         Task<List<IWriterServiceGetAllWriterAsyncResponse>> GetAllWriterAsync();
+        Task<int> GetWriterIdWithAppUserName(string username);
+
         //Update
         Task<IWriterServiceUpdateOneWriterAsyncResponse> UpdateOneWriterAsync(IWriterServiceUpdateOneWriterAsyncRequest writer);
         //Delete

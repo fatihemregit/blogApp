@@ -3,8 +3,9 @@ Kendi Blog Yazýlarýmý kendi websitemde(fatihemrekilinc.xyz) yayýnlamak için geli
 ## Projenin Amacý
 Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþmak hem de web geliþtirme becerilerimi geliþtirmek.
 ## Bu Committe Yapýlan iþlemler
-- WriterController sýnýfýnýn kodlanmasý ve diðer sýnýflarda gerekli düzenlemeler yapýlmasý.
-- WriterController için gerekli yardýmcý sýnýflarýn kodlanmasý.
+- Blog yazýlarýný yazmak için gerekli editör eklentisinin yüklenmesi
+- BlogController sýnýfýnýn kodlanmasý ve diðer sýnýflarda gerekli düzenlemelerin yapýlmasý.
+- BlogController için gerekli yardýmcý sýnýflarýn kodlanmasý.
 ## Proje Günlüðü
 ### Gün 1 (26.06.2025)
 - Proje oluþturuldu.
@@ -45,6 +46,9 @@ Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþma
 ### Gün 9 (17.07.2025)
 - WriterController sýnýfý kodlandý ve diðer sýnýflarda gerekli düzenlemeler yapýldý.
 - WriterController için gerekli yardýmcý sýnýflar kodlandý.
+- Blog yazýlarýný yazmak için gerekli editör eklentisi yüklendi(tinymce)
+- BlogController sýnýfý kodlandý ve diðer sýnýflarda gerekli düzenlemeler yapýldý.
+- BlogController için gerekli yardýmcý sýnýflar kodlandý.
 ### Yapýlacaklar
 - Custom Nullchecker yazýlmasý
 - SafeDelete mekanizmasýnýn kurulmasý
