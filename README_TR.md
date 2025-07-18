@@ -57,4 +57,3 @@ Blog yazýlarýmý kendi websitemde yayýnlamak ve bu sayede hem yazýlarýmý paylaþma
 - Rol bazlý yetkilendirme kullanýlarak Yazar Kaydý Sayfasýnýn Sadece bir sefer çalýþacak þekilde ayarlandý
 - Safe Delete Mekanizmasý Kuruldu.
 - Custom NullChecker yazýldý ve null check kodlarýnda kullanýldý
-### Yapýlacaklar
