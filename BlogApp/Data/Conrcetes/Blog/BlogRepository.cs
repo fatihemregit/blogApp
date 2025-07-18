@@ -76,13 +76,12 @@ namespace BlogApp.Data.Conrcetes.Blog
 
         public async Task<bool> DeleteOneBlogAsync(IBlogRepositoryDeleteOneBlogAsyncRequest blog)
         {
-            //Daha sonralarında safe delete kullanalım
             Models.Blog? blogInDb = await _context.Blogs.FirstOrDefaultAsync(b => b.Id == blog.Id);
             if (blogInDb is null)
             {
                 return false;
             }
-            _context.Blogs.Remove(blogInDb);
+            blogInDb.isDelete = true;
             int result =  await _context.SaveChangesAsync();
             if (result <= 0)
             {

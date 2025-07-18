@@ -20,6 +20,10 @@ namespace BlogApp.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Blog>().HasQueryFilter(b => !b.isDelete);
+            modelBuilder.Entity<Writer>().HasQueryFilter(w => !w.isDelete);
+            modelBuilder.Entity<AppUser>().HasQueryFilter(u => !u.isDelete);
+            modelBuilder.Entity<AppRole>().HasQueryFilter(r => !r.isDelete);
 
             modelBuilder.Entity<Writer>()
                 .HasOne(w => w.AppUser)

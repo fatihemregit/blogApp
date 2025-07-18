@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,6 +24,11 @@
 
 </head>
 <body>
+
+    @{
+        var user = HttpContextAccessor.HttpContext?.User;
+    }
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Blog Site</a>
@@ -36,35 +42,62 @@
                     <li class="nav-item">
                         <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("Index", "Test")">Anasayfa</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("CreateBlog", "Blog")">Yeni Blog Yazısı</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("ListAllBlogs", "Blog")">Blogları Listele</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("CreateWriter", "Writer")">Yazar Kaydı</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("GetAllWriters", "Writer")">Yazarları Listele</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="@Url.Action("CreateUser", "AuthUser")">Kaydol</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="@Url.Action("LoginUser", "AuthUser")">Giriş Yap</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="@Url.Action("GetAllUsers", "AuthUser")">Kullanıcıları Listele</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="@Url.Action("LogoutUser", "AuthUser")">Çıkış Yap</a>
-                    </li>
-                    <li class="nav-item">
+                    @if (user.IsInRole("Writer_CreateWriter"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("CreateWriter", "Writer")">Yazar Kaydı</a>
+                        </li>
+                    }
+                    @if (user.IsInRole("Blog_CreateBlog"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("CreateBlog", "Blog")">Yeni Blog Yazısı</a>
+                        </li>
+                    }
+
+
+
+
+                    @if (user.IsInRole("Writer_GetAllWriters"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active text-secondary" aria-current="page" href="@Url.Action("GetAllWriters", "Writer")">Yazarları Listele</a>
+                        </li>
+                    }
+
+                    @if (!(user.Identity.IsAuthenticated) || (user is null))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="@Url.Action("CreateUser", "AuthUser")">Kaydol</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="@Url.Action("LoginUser", "AuthUser")">Giriş Yap</a>
+                        </li>
+                    }
+                    @if (user.IsInRole("AuthUser_GetAllUsers"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="@Url.Action("GetAllUsers", "AuthUser")">Kullanıcıları Listele</a>
+                        </li>
+                    }
+
+                    @if (user.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="@Url.Action("LogoutUser", "AuthUser")">Çıkış Yap</a>
+                        </li>
+                    }
+
+
+                    @*                     <li class="nav-item">
                         <a class="nav-link disabled text-secondary">Disabled</a>
-                    </li>
+                    </li> *@
                 </ul>
             </div>
         </div>

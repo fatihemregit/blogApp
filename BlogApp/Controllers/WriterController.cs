@@ -4,6 +4,7 @@ using BlogApp.Business.Abstracts.Writer;
 using BlogApp.Models.IAuthUserService;
 using BlogApp.Models.IWriterService;
 using BlogApp.Models.WriterController;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Elfie.Model.Strings;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace BlogApp.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Roles = "Writer_CreateWriter")]
         [HttpGet("/Writer/Create")]
         //Create
         public async Task<IActionResult> CreateWriter()
@@ -46,6 +48,7 @@ namespace BlogApp.Controllers
 
             return View();
         }
+        [Authorize(Roles = "Writer_CreateWriter")]
         [HttpPost("/Writer/Create")]
         public async Task<IActionResult> CreateWriter(CreateWriterViewModel model)
         {
@@ -54,10 +57,11 @@ namespace BlogApp.Controllers
                 Console.WriteLine("(Writer Controller) writer appUser id : " + model.AppUserId);
                 IWriterServiceCreateOneWriterAsyncRequest request = _mapper.Map<IWriterServiceCreateOneWriterAsyncRequest>(model);
                 IWriterServiceCreateOneWriterAsyncResponse response = await _writerService.CreateOneWriterAsync(request);
-                return RedirectToAction("WriterDetail", "Writer", new { writerId = response.Id});
+                return RedirectToAction("LogoutUser", "AuthUser");
             }
             return View(model);
         }
+        [Authorize(Roles = "Writer_GetAllWriters")]
         //Read
         [HttpGet("/Writer/ListWriters")]
         public async Task<IActionResult> GetAllWriters()
@@ -66,6 +70,7 @@ namespace BlogApp.Controllers
             List<GetAllWriterViewModel> viewModels = _mapper.Map<List<GetAllWriterViewModel>>(response);
             return View(viewModels);
         }
+        [Authorize(Roles = "Writer_WriterDetail")]
         [HttpGet("/Writer/Detail")]
         public async Task<IActionResult> WriterDetail(int writerId)
         {
@@ -75,13 +80,14 @@ namespace BlogApp.Controllers
         }
 
         //Update
-
+        [Authorize(Roles = "Writer_WriterUpdate")]
         [HttpGet("/Writer/Update")]
         public async Task<IActionResult> WriterUpdate(int writerId)
         {
             IWriterServiceGetOneWriterWithIdAsyncResponse  response = await _writerService.GetOneWriterWithIdAsync(new IWriterServiceGetOneWriterWithIdAsyncRequest { Id = writerId});
             return View(_mapper.Map<WriterUpdateViewModel>(response));
         }
+        [Authorize(Roles = "Writer_WriterUpdate")]
         [HttpPost("/Writer/Update")]
         public async Task<IActionResult> WriterUpdate(WriterUpdateViewModel model)
         {
@@ -96,6 +102,7 @@ namespace BlogApp.Controllers
         }
 
         //Delete
+        [Authorize(Roles = "Writer_WriterDelete")]
         [HttpGet("/Writer/Delete")]
         public async Task<IActionResult> WriterDelete(int writerId)
         {

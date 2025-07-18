@@ -5,6 +5,7 @@ using BlogApp.Models.AuthRoleController;
 using BlogApp.Models.AuthUserController;
 using BlogApp.Models.IAuthRoleService;
 using BlogApp.Models.IAuthUserService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
@@ -66,6 +67,7 @@ namespace BlogApp.Controllers
         }
 
         //Read
+        [Authorize(Roles ="AuthUser_GetAllUsers")]
         [HttpGet("/Auth/User/ListUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -77,6 +79,7 @@ namespace BlogApp.Controllers
             List<GetAllUserViewModel> userInDb = _mapper.Map<List<GetAllUserViewModel>>(response);
             return View(userInDb);
         }
+        [Authorize(Roles = "AuthUser_UserDetail")]
         [HttpGet("/Auth/User/DetailUser")]
         public async Task<IActionResult> UserDetail(string userId)
         {
@@ -91,6 +94,7 @@ namespace BlogApp.Controllers
 
 
         //Delete
+        [Authorize(Roles = "AuthUser_DeleteUser")]
         [HttpGet("/Auth/User/DeleteUser")]
         public async Task<IActionResult> DeleteUser(string userName)
         {
@@ -148,7 +152,7 @@ namespace BlogApp.Controllers
         }
 
 
-        [HttpGet("{d}")]
+        [HttpGet("{d?}")]
         public IActionResult AcessDenied([FromRoute(Name = "d")] string description = "Yetki Hatası")
         {
             ViewBag.Description = description;
@@ -172,6 +176,7 @@ namespace BlogApp.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Roles = "AuthRole_CreateRole")]
         //Create Role
         [HttpGet("/Auth/Role/Create")]
         public async Task<IActionResult> CreateRole()
@@ -179,7 +184,7 @@ namespace BlogApp.Controllers
 
             return View();
         }
-
+        [Authorize(Roles = "AuthRole_CreateRole")]
         [HttpPost("/Auth/Role/Create")]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
         {
@@ -197,6 +202,7 @@ namespace BlogApp.Controllers
             return View();
         }
         //Delete Role
+        [Authorize(Roles = "AuthRole_DeleteRole")]
         [HttpGet("/Auth/Role/Delete")]
         public async Task<IActionResult> DeleteRole()
         {
@@ -209,7 +215,7 @@ namespace BlogApp.Controllers
             ViewBag.RoleNames = RoleNames;
             return View();
         }
-
+        [Authorize(Roles = "AuthRole_DeleteRole")]
         [HttpPost("/Auth/Role/Delete")]
         public async Task<IActionResult> DeleteRole(DeleteRoleViewModel model)
         {
@@ -228,6 +234,7 @@ namespace BlogApp.Controllers
         }
 
         //set Role To User
+        [Authorize(Roles = "AuthRole_SetRole")]
         [HttpGet("/Auth/Role/SetRoleForUser")]
         public async Task<IActionResult> SetRole(string userEmail = null)
         {
@@ -238,7 +245,7 @@ namespace BlogApp.Controllers
             return View(viewModels);
         
         }
-
+        [Authorize(Roles = "AuthRole_SetRole")]
         [HttpPost("/Auth/Role/SetRoleForUser")]
         public async Task<IActionResult> SetRole(List<SetRoleViewModel> model, string userEmail = null)
         {

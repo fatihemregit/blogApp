@@ -74,13 +74,12 @@ namespace BlogApp.Data.Conrcetes.Writer
 
         public async Task<bool> DeleteOneWriter(IWriterRepositoryDeleteOneWriterRequest writer)
         {
-            //Daha sonralarında safe delete kullanalım
             Models.Writer? writerInDb = await _context.Writers.FirstOrDefaultAsync(w => w.Id == writer.Id);
             if (writerInDb is null)
             {
                 return false;
             }
-            _context.Writers.Remove(writerInDb);
+            writerInDb.isDelete = true;
             int result = await _context.SaveChangesAsync();
             if (result <= 0)
             {

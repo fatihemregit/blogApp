@@ -8,6 +8,10 @@
 
         public string Content { get; set; }
 
+
+        public bool isDelete { get; set; } = false;
+
+
         // Foreign Key
         public int WriterId { get; set; }
 

@@ -15,6 +15,7 @@ builder.Services.setInterfaceConcretesForBusinessLayer();
 builder.Services.SetAuthentication();
 builder.Services.ConfigureCookie();
 builder.Services.setAutoMapperForMainLayer();
+builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

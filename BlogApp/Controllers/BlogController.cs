@@ -4,6 +4,7 @@ using BlogApp.Business.Abstracts.Blog;
 using BlogApp.Business.Abstracts.Writer;
 using BlogApp.Models.BlogController;
 using BlogApp.Models.IBlogService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 namespace BlogApp.Controllers
@@ -24,7 +25,7 @@ namespace BlogApp.Controllers
         }
 
         //Create
-
+        [Authorize(Roles = "Blog_CreateBlog")]
         [HttpGet("/Blog/New")]
         public async Task<IActionResult> CreateBlog()
         {
@@ -32,6 +33,7 @@ namespace BlogApp.Controllers
             TempData["writerId"] = await _writerService.GetWriterIdWithAppUserName(User.Identity.Name);
             return View();
         }
+        [Authorize(Roles = "Blog_CreateBlog")]
         [HttpPost("/Blog/New")]
         public async Task<IActionResult> CreateBlog(CreateBlogViewModel model)
         {
@@ -45,6 +47,7 @@ namespace BlogApp.Controllers
             return View(model);
         }
         //Read
+        //[Authorize(Roles = "Blog_DetailBlog")]
         [HttpGet("/Blog/Read")]
         public async Task<IActionResult> DetailBlog(int blogId = 1)
         {
@@ -54,6 +57,7 @@ namespace BlogApp.Controllers
             viewModel.WriterName = (await _writerService.GetOneWriterWithIdAsync(new Models.IWriterService.IWriterServiceGetOneWriterWithIdAsyncRequest { Id = response.WriterId })).Name;
             return View(viewModel);
         }
+        //[Authorize(Roles = "Blog_ListAllBlogs")]
         [HttpGet("/Blog/list")]
         public async Task<IActionResult> ListAllBlogs()
         {
@@ -64,6 +68,7 @@ namespace BlogApp.Controllers
 
 
         //Udpdate
+        [Authorize(Roles = "Blog_UpdateBlog")]
         [HttpGet("/Blog/Edit")]
         public async Task<IActionResult> UpdateBlog(int blogId = 1)
         {
@@ -71,6 +76,7 @@ namespace BlogApp.Controllers
             IBlogServiceGetOneBlogWithIdAsyncResponse response = await _blogService.GetOneBlogWithIdAsync(request);
             return View(_mapper.Map<UpdateBlogViewModel>(response));
         }
+        [Authorize(Roles = "Blog_UpdateBlog")]
         [HttpPost("/Blog/Edit")]
         public async Task<IActionResult> UpdateBlog(UpdateBlogViewModel model)
         {
@@ -83,6 +89,7 @@ namespace BlogApp.Controllers
             return View(model);
         }
         //Delete
+        [Authorize(Roles = "Blog_DeleteBlog")]
         [HttpGet("/Blog/Delete")]
         public async Task<IActionResult> DeleteBlog(int blogId = 1)
         {

@@ -3,6 +3,7 @@ using BlogApp.Business.Abstracts.Auth;
 using BlogApp.Models.Auth;
 using BlogApp.Models.Exceptions;
 using BlogApp.Models.IAuthRoleService;
+using BlogApp.Utils.Functions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,8 +27,7 @@ namespace BlogApp.Business.Concretes.Auth
 
         public async Task<bool> CreateRolePost(IAuthRoleServiceCreateRolePostRequest role)
         {
-            //null check(daha sonraları kendi null checkimizi kullanacağız)
-            if (role is null)
+            if (CustomNullChecker.nullCheckObjectProps(role))
             {
                 //identity exception fırlat(role  parameter is null)
                 throw new IdentityException("role  parameter is null");
@@ -59,7 +59,7 @@ namespace BlogApp.Business.Concretes.Auth
         public async Task<bool> DeleteRolePost(IAuthRoleServiceDeleteRolePostRequest role)
         {
             //null check
-            if (role is null)
+            if (CustomNullChecker.nullCheckObjectProps(role))
             {
                 //identity exception fırlat(role parameter is null)
                 throw new IdentityException("role parameter is null");
@@ -67,7 +67,7 @@ namespace BlogApp.Business.Concretes.Auth
             }
             //rolü id ile bulalım
             AppRole? foundRolewithId = await _roleManager.FindByIdAsync(role.SelectedRoleId);
-            if (foundRolewithId is null)
+            if (CustomNullChecker.nullCheckObjectProps(foundRolewithId))
             {
                 //identity exception fırlat(role not found)
                 throw new IdentityException("role not found");
@@ -83,7 +83,8 @@ namespace BlogApp.Business.Concretes.Auth
             }
             //rol aktif olarak kullanılmıyor
             //rol silme
-            IdentityResult result = await _roleManager.DeleteAsync(foundRolewithId);
+            foundRolewithId.isDelete = true;
+            IdentityResult result = await _roleManager.UpdateAsync(foundRolewithId);
             if (result.Succeeded)
             {
                 return true;
@@ -96,7 +97,7 @@ namespace BlogApp.Business.Concretes.Auth
         public async Task<List<IAuthRoleServiceSetRoleForUserGet>> SetRoleForUserGet(string userEmail)
         {
             //null check
-            if (userEmail is null)
+            if (CustomNullChecker.nullCheckObjectProps(new { userEmail = userEmail })  )
             {
                 //identity exception fırlat(userEmail parameter is null)
                 throw new IdentityException("userEmail parameter is null");
@@ -104,7 +105,7 @@ namespace BlogApp.Business.Concretes.Auth
             }
             //email ile userı bulalım
             AppUser? foundUserbyEmail = await _userManager.FindByEmailAsync(userEmail);
-            if (foundUserbyEmail is null)
+            if (CustomNullChecker.nullCheckObjectProps(foundUserbyEmail))
             {
                 //identity exception fırlat(user not found)
                 throw new IdentityException("user not found");
@@ -134,7 +135,7 @@ namespace BlogApp.Business.Concretes.Auth
         public async Task<bool> SetRoleForUserPost(List<IAuthRoleServiceSetRoleForUserPost> roles, string userEmail, string localUserName)
         {
             //null check
-            if ((roles is null) || (userEmail is null) || (localUserName is null) )
+            if ((CustomNullChecker.nullCheckObjectProps(roles)) || CustomNullChecker.nullCheckObjectProps(new {userEmail = userEmail,localUserName = localUserName}) )
             {
                 //identity exception fırlat(some parameters are null)
                 throw new IdentityException("some parameters are null");
@@ -142,7 +143,7 @@ namespace BlogApp.Business.Concretes.Auth
             }
             //kullanıcıyı bulalım
             AppUser? foundUser = await _userManager.FindByEmailAsync(userEmail);
-            if (foundUser is null)
+            if (CustomNullChecker.nullCheckObjectProps(foundUser))
             {
                 //identity exception fırlat(user not found)
                 throw new IdentityException("user not found");

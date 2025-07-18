@@ -3,6 +3,7 @@ using BlogApp.Business.Abstracts.Auth;
 using BlogApp.Models.Auth;
 using BlogApp.Models.Exceptions;
 using BlogApp.Models.IAuthUserService;
+using BlogApp.Utils.Functions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,12 +37,12 @@ namespace BlogApp.Business.Concretes.Auth
 
         public async Task<IAuthUserServiceGetOneUserAsyncResponse> GetOneUserAsync(IAuthUserServiceGetOneUserAsyncRequest user)
         {
-            if (user is null)
+            if (CustomNullChecker.nullCheckObjectProps(user))
             { 
                 throw new IdentityException("user parameter is null");
             }
             AppUser? foundUser = await _userManager.FindByIdAsync(user.Id.ToString());
-            if (foundUser is null)
+            if (CustomNullChecker.nullCheckObjectProps(foundUser))
             {
                 throw new IdentityException("user is not found");
             }
@@ -54,7 +55,7 @@ namespace BlogApp.Business.Concretes.Auth
         public async Task<IAuthUserServiceSignInResponse> SignIn(IAuthUserServiceSignInRequest user)
         {
             //null check(daha sonraları kendi null checkimizi kullanacağız)
-            if (user is null)
+            if (CustomNullChecker.nullCheckObjectProps(user))
             {
                 //identity exception fırlat(user parameter is null)
                 throw new IdentityException("user parameter is null");
@@ -67,6 +68,7 @@ namespace BlogApp.Business.Concretes.Auth
             IdentityResult result = await _userManager.CreateAsync(requestForResult, user.Sifre);
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(requestForResult,"Writer_CreateWriter");
                 return new IAuthUserServiceSignInResponse() { result = true,identityErrors = null};
             }
             else
@@ -81,7 +83,7 @@ namespace BlogApp.Business.Concretes.Auth
         public async Task<bool> Login(IAuthUserServiceLoginRequest user)
         {
             //null check
-            if (user is null)
+            if (CustomNullChecker.nullCheckObjectProps(user))
             {
                 //identity exception fırlat(user parameter is null)
                 return false;
@@ -90,7 +92,7 @@ namespace BlogApp.Business.Concretes.Auth
             }
             //useri bulalım
             AppUser? foundUser = await _userManager.FindByEmailAsync(user.Email);
-            if (foundUser is null) 
+            if (CustomNullChecker.nullCheckObjectProps(foundUser)) 
             {
                 //identity exception fırlat(user is not found)
                 return false;
@@ -118,21 +120,21 @@ namespace BlogApp.Business.Concretes.Auth
         public async Task<bool> DeleteUser(string userName)
         {
             //null check
-            if (userName is null)
+            if (CustomNullChecker.nullCheckObjectProps(new {userName = userName}))
             {
                 //identity exception fırlat(username parameter is null)
                 throw new IdentityException("username parameter is null");
             }
             //kullanıcıyı bulalım
             AppUser? foundUser = await _userManager.FindByNameAsync(userName);
-            if (foundUser is null)
+            if (CustomNullChecker.nullCheckObjectProps(foundUser))
             {
                 //identity exception fırlat(user is not found)
                 throw new IdentityException("user is not found");
 
             }
-            //kullanıcıyı silelim(daha sonrasında safe delete eklenecek)
-            IdentityResult result =  await _userManager.DeleteAsync(foundUser);
+            foundUser.isDelete = true;
+            IdentityResult result = await _userManager.UpdateAsync(foundUser);
             if (result.Succeeded)
             {
                 return true;
@@ -142,22 +144,22 @@ namespace BlogApp.Business.Concretes.Auth
         public async Task<bool> checkUserIsLogin(string userName)
         {
             //null check
-            if (userName is null)
+            if (CustomNullChecker.nullCheckObjectProps(new { userName = userName }))
             {
                 return false;
             }
             AppUser? foundByName = await _userManager.FindByNameAsync(userName);
-            if (foundByName is null)
+            if (CustomNullChecker.nullCheckObjectProps(foundByName))
             {
                 return false;
             }
             AppUser? foundByEmail = await _userManager.FindByEmailAsync(foundByName.Email);
-            if (foundByEmail is null)
+            if (CustomNullChecker.nullCheckObjectProps(foundByEmail))
             {
                 return false;
             }
             AppUser foundAppUser = foundByEmail;
-            if (foundAppUser is not null)
+            if (!CustomNullChecker.nullCheckObjectProps(foundAppUser))
             {
                 return true;
             }
@@ -167,12 +169,12 @@ namespace BlogApp.Business.Concretes.Auth
         public async Task<IAuthUserServiceFindLocalUserwithUserNameResponse?> findLocalUserwithUserName(string userName)
         {
             //null check
-            if (userName is null)
+            if (CustomNullChecker.nullCheckObjectProps(new { userName = userName }))
             {
                 return null;
             }
             AppUser? foundByName = await _userManager.FindByNameAsync(userName);
-            if (foundByName is null)
+            if (CustomNullChecker.nullCheckObjectProps(foundByName))
             {
                 return null;
             }
@@ -183,7 +185,7 @@ namespace BlogApp.Business.Concretes.Auth
         {
             IAuthUserServiceFindLocalUserwithUserNameResponse? localUser = await findLocalUserwithUserName(userName);
             Dictionary<string, bool> result = new Dictionary<string, bool>();
-            if (localUser is null)
+            if (CustomNullChecker.nullCheckObjectProps(localUser))
             {
                 foreach (string role in roleNames)
                 {

@@ -13,6 +13,9 @@ namespace BlogApp.Models
 
         public string profileUrl { get; set; }
 
+        public bool isDelete { get; set; } = false;
+
+
         // Navigation: One writer has many blogs
         public List<Blog> Blogs { get; set; }
 
